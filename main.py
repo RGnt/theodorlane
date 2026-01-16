@@ -10,6 +10,7 @@ load_dotenv()
 
 api_key = os.environ.get("OPENAI_API_KEY")
 base_url = os.environ.get("BASE_URL")
+model_name = os.environ.get("MODEL_NAME")
 
 client = OpenAI(
     base_url=base_url,
@@ -40,7 +41,7 @@ def main():
 def generate_content(client, messages, verbose):
     finished = False
     response = client.chat.completions.create(
-        model="granite4-h-tiny-Q8_0.gguf",
+        model=model_name,
         tools=tools,
         messages=messages,
         tool_choice="auto",
